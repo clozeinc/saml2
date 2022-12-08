@@ -599,6 +599,17 @@ module.exports.ServiceProvider =
       options = set_option_defaults options, identity_provider.shared_options, @shared_options
       @_assert identity_provider, options, cb
 
+    # Returns:
+    #   An object containing the parsed response for a post assert.
+    # Params:
+    #   identity_provider
+    #   options
+    #   cb
+    post_sessionless_assert: (identity_provider, options, cb) ->
+      options = _.defaults(_.extend(options, {get_request: false}), {require_session_index: false})
+      options = set_option_defaults options, identity_provider.shared_options, @shared_options
+      @_assert identity_provider, options, cb
+
     # Private function, called by redirect and post assert to return a response to
     # corresponding assert.
     _assert: (identity_provider, options, cb) ->
